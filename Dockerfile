@@ -6,7 +6,7 @@ RUN apt-get -y install awscli
 RUN pip install fabric==1.13.1
 RUN pip install cassandra_snapshotter
 
-RUN cassandra-snapshotter --s3-bucket-name=$AWS_S3_BUCKET \
+CMD cassandra-snapshotter --s3-bucket-name=$AWS_S3_BUCKET \
                       --s3-bucket-region=$AWS_S3_REGION \
                       --s3-base-path=$AWS_S3_PATH \
                       --aws-access-key-id=$AWS_ACCESS_KEY_ID \
@@ -14,5 +14,3 @@ RUN cassandra-snapshotter --s3-bucket-name=$AWS_S3_BUCKET \
                       backup \
                       --hosts=$CASSANDRA_HOSTS \
                       --user=$CASSANDRA_USER
-
-CMD /bin/bash
